@@ -2,7 +2,7 @@ exports.SHA256 = function sha256(string) {
     var rightRotate = (value, shiftBits) => {
         return (value >>> shiftBits) | (value << (32 - shiftBits));
     };
-	
+
 	var mathPow = Math.pow;
     var maxWord = mathPow(2, 32);
     var lengthProperty = 'length';
@@ -40,15 +40,15 @@ exports.SHA256 = function sha256(string) {
 
 		words[i>>2] |= j << ((3 - i)%4)*8;
     }
-    
+
 	words[words[lengthProperty]] = ((stringBitLength/maxWord) | 0);
 	words[words[lengthProperty]] = (stringBitLength)
-	
+
 	for (j = 0; j < words[lengthProperty];) {
 		var w = words.slice(j, j += 16);
 		var oldHash = hash;
 		hash = hash.slice(0, 8);
-		
+
 		for (i = 0; i < 64; i++) {
 			var i2 = i + j;
 			var w15 = w[i - 15], w2 = w[i - 2];
@@ -64,25 +64,25 @@ exports.SHA256 = function sha256(string) {
 						+ w[i - 7]
 						+ (rightRotate(w2, 17) ^ rightRotate(w2, 19) ^ (w2 >>> 10))
 					) | 0
-                );
-                
+				);
+
 			var temp2 = (rightRotate(a, 2) ^ rightRotate(a, 13) ^ rightRotate(a, 22))
-				+ ((a & hash[1]) ^ (a & hash[2]) ^ (hash[1] & hash[2]));
-			
+					+ ((a & hash[1]) ^ (a & hash[2]) ^ (hash[1] & hash[2]));
+	
 			hash = [(temp1 + temp2)|0].concat(hash); 
 			hash[4] = (hash[4] + temp1) | 0;
 		}
-		
+
 		for (i = 0; i < 8; i++)
 			hash[i] = (hash[i] + oldHash[i])|0;
 	}
-	
+
 	for (i = 0; i < 8; i++) {
 		for (j = 3; j + 1; j--) {
 			var b = (hash[i] >> (j * 8)) & 255;
 			result += ((b < 16) ? 0 : '') + b.toString(16);
 		}
-    }
+	}
     
 	return result;
 };

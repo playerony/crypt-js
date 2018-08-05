@@ -191,7 +191,7 @@ exports.MD5 = (string) => {
         c = HH(c, d, a, b, x[k + 15],S33, 0x1FA27CF8);
         b = HH(b, c, d, a, x[k + 2], S34, 0xC4AC5665);
         a = II(a, b, c, d, x[k + 0], S41, 0xF4292244);
-		d = II(d, a, b, c, x[k + 7], S42, 0x432AFF97);
+        d = II(d, a, b, c, x[k + 7], S42, 0x432AFF97);
         c = II(c, d, a, b, x[k + 14],S43, 0xAB9423A7);
         b = II(b, c, d, a, x[k + 5], S44, 0xFC93A039);
         a = II(a, b, c, d, x[k + 12],S41, 0x655B59C3);

@@ -1,7 +1,7 @@
 exports.ADFGVX = function(string) {
     var word = ['*', 'A', ',', '^', '!', 'a', 'K', ')', '/', ';', 'G', 'f', '@', 'D', '~', 'm', '(', 'N', '+', '-', '1', '2', '3', '4', '5'];
     
-    var generateTableOfLetters = () => {
+    var generateAsciiTable = () => {
         var result = [];
         var lineOfLetters = [];
         var counter = 0;
@@ -23,13 +23,13 @@ exports.ADFGVX = function(string) {
         }
 
         return result;
-    }
+    };
 
-    var lettersTable = generateTableOfLetters();
+    var lettersTable = generateAsciiTable();
 
     var getLetter = (x, y) => {
         return lettersTable[y][x];
-    }
+    };
 
     var findLetter = (char) => {
         for(var i=0; i<lettersTable.length; i++) {
@@ -44,7 +44,7 @@ exports.ADFGVX = function(string) {
         }
 
         return '';
-    }
+    };
 
     var encodeWord = (string) => {
         var result = '';
@@ -52,7 +52,7 @@ exports.ADFGVX = function(string) {
             result += findLetter(string[i]);
 
         return result;
-    }
+    };
 
     return encodeWord(string);
 }
