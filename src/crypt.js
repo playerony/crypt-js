@@ -1,6 +1,10 @@
 const MD5 = require('./algorithms/MD5').MD5;
 const SHA256 = require('./algorithms/SHA256').SHA256;
 const ADFGVX = require('./algorithms/ADFGVX').ADFGVX;
+const CAESAR = require('./algorithms/CAESAR').CAESAR;
+const ROT13 = require('./algorithms/ROT13').ROT13;
+const ONE_TIME_PAD = require('./algorithms/ONE_TIME_PAD').ONE_TIME_PAD;
+const algorithms = require('./constants/constants').algorithms;
 
 var generateResponse = (algorithm, result) => {
     return {
@@ -9,7 +13,7 @@ var generateResponse = (algorithm, result) => {
     }
 }
 
-var encode = (options) => {
+var hash = (options) => {
     var algorithm = options.algorithm;
     var text = options.value;
 
@@ -20,13 +24,22 @@ var encode = (options) => {
         case 'SHA256':
             return generateResponse(algorithm, SHA256(text));
 
-        default:
         case 'ADFGVX':
-            return generateResponse('ADFGVX', ADFGVX(text));
+            return generateResponse(algorithm, ADFGVX(text));
+
+        case 'ROT13':
+            return generateResponse(algorithm, ROT13(text));
+
+        case 'ONE_TIME_PAD':
+            return generateResponse(algorithm, ONE_TIME_PAD(text));
+            
+        default:
+        case 'CAESAR':
+            return generateResponse('CAESAR', CAESAR(text));
     }
 }
 
-console.log(encode({
-    algorithm: 'SHA256',
-    value: 'WORD'
+console.log(hash({
+    algorithm: algorithms.ONE_TIME_PAD,
+    value: 'W'
 }))
