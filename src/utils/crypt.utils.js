@@ -3,6 +3,7 @@ const SHA256 = require('../algorithms/SHA256').SHA256;
 const ADFGVX = require('../algorithms/ADFGVX').ADFGVX;
 const CAESAR = require('../algorithms/CAESAR').CAESAR;
 const ROT13 = require('../algorithms/ROT13').ROT13;
+const DES = require('../algorithms/DES').DES;
 const ONE_TIME_PAD = require('../algorithms/ONE_TIME_PAD').ONE_TIME_PAD;
 
 exports.hashValue = (algorithm, value) => {
@@ -24,6 +25,9 @@ exports.hashValue = (algorithm, value) => {
             
         case 'CAESAR':
             return CAESAR(value);
+
+        case 'DES':
+            return DES(value);
 
         default:
             return null;

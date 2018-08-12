@@ -4,5 +4,6 @@ exports.algorithms = JSON.parse(JSON.stringify({
     ADFGVX: 'ADFGVX',
     CAESAR: 'CAESAR',
     ROT13: 'ROT13',
-    ONE_TIME_PAD: 'ONE_TIME_PAD'
+    ONE_TIME_PAD: 'ONE_TIME_PAD',
+    DES: 'DES'
 }))
