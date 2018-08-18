@@ -32,6 +32,6 @@ var hash = (options) => {
 }
 
 console.log(hash({
-    algorithms: [algorithm.DES],
+    algorithms: [algorithm.DES, algorithm.MD5],
     value: 'WORK'
 }))
