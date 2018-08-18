@@ -15,8 +15,8 @@ console.log(hash({
 ## Result
 ```json
 {
-    algorithm: ["DES", "MD5"],
-    result: "76e2fba0bb05f2da1814c5e088e20241"
+    "algorithm": ["DES", "MD5"],
+    "result": "76e2fba0bb05f2da1814c5e088e20241"
 }
 ```
 
