@@ -1,8 +1,8 @@
 exports.ROT13 = function(string) {
-    var add = 13;
+    const add = 13;
 
-    var encodeWord = (string) => {
-        var result = '';
+    const encodeWord = (string) => {
+        let result = '';
         for(var i=0; i<string.length; i++)
             result += String.fromCharCode(string.charCodeAt(i) + add);
 

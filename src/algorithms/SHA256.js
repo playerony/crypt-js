@@ -1,30 +1,30 @@
 exports.SHA256 = function sha256(string) {
-    var rightRotate = (value, shiftBits) => {
+    const rightRotate = (value, shiftBits) => {
         return (value >>> shiftBits) | (value << (32 - shiftBits));
     };
 
-	var mathPow = Math.pow;
-    var maxWord = mathPow(2, 32);
-    var lengthProperty = 'length';
-    var i, j;
-    var result = '';
+	const mathPow = Math.pow;
+    const maxWord = mathPow(2, 32);
+    const lengthProperty = 'length';
+    let i, j;
+    let result = '';
 
-    var words = [];
-    var stringBitLength = string[lengthProperty] * 8;
+    let words = [];
+    const stringBitLength = string[lengthProperty] * 8;
 
-    var hash = sha256.h = sha256.h || [];
-    var k = sha256.k = sha256.k || [];
-    var primeCounter = k[lengthProperty];
+    let hash = sha256.h = sha256.h || [];
+    const k = sha256.k = sha256.k || [];
+    let primeCounter = k[lengthProperty];
 
-    var isComposite = {};
+    let isComposite = {};
 
     for (var candidate = 2; primeCounter < 64; candidate++) {
         if (!isComposite[candidate]) {
             for (i = 0; i < 313; i += candidate) 
                 isComposite[i] = candidate;
                 
-            hash[primeCounter] = (mathPow(candidate, .5)*maxWord) | 0;
-            k[primeCounter++] = (mathPow(candidate, 1/3)*maxWord) | 0;
+            hash[primeCounter] = (mathPow(candidate, .5) * maxWord) | 0;
+            k[primeCounter++] = (mathPow(candidate, 1/3) * maxWord) | 0;
         }
     }
 	
@@ -35,26 +35,26 @@ exports.SHA256 = function sha256(string) {
 
 	for (i = 0; i < string[lengthProperty]; i++) {
 		j = string.charCodeAt(i);
-        if (j>>8) 
+        if (j >> 8) 
             return;
 
-		words[i>>2] |= j << ((3 - i)%4)*8;
+		words[i >> 2] |= j << ((3 - i) % 4) * 8;
     }
 
-	words[words[lengthProperty]] = ((stringBitLength/maxWord) | 0);
+	words[words[lengthProperty]] = ((stringBitLength / maxWord) | 0);
 	words[words[lengthProperty]] = (stringBitLength)
 
 	for (j = 0; j < words[lengthProperty];) {
-		var w = words.slice(j, j += 16);
-		var oldHash = hash;
+		const w = words.slice(j, j += 16);
+		const oldHash = hash;
 		hash = hash.slice(0, 8);
 
 		for (i = 0; i < 64; i++) {
-			var i2 = i + j;
-			var w15 = w[i - 15], w2 = w[i - 2];
+			const i2 = i + j;
+			const w15 = w[i - 15], w2 = w[i - 2];
 
-			var a = hash[0], e = hash[4];
-			var temp1 = hash[7]
+			const a = hash[0], e = hash[4];
+			const temp1 = hash[7]
 				+ (rightRotate(e, 6) ^ rightRotate(e, 11) ^ rightRotate(e, 25))
 				+ ((e & hash[5])^((~e) & hash[6]))
 				+ k[i]
@@ -66,7 +66,7 @@ exports.SHA256 = function sha256(string) {
 					) | 0
 				);
 
-			var temp2 = (rightRotate(a, 2) ^ rightRotate(a, 13) ^ rightRotate(a, 22))
+			const temp2 = (rightRotate(a, 2) ^ rightRotate(a, 13) ^ rightRotate(a, 22))
 					+ ((a & hash[1]) ^ (a & hash[2]) ^ (hash[1] & hash[2]));
 	
 			hash = [(temp1 + temp2)|0].concat(hash); 
@@ -79,7 +79,7 @@ exports.SHA256 = function sha256(string) {
 
 	for (i = 0; i < 8; i++) {
 		for (j = 3; j + 1; j--) {
-			var b = (hash[i] >> (j * 8)) & 255;
+			const b = (hash[i] >> (j * 8)) & 255;
 			result += ((b < 16) ? 0 : '') + b.toString(16);
 		}
 	}

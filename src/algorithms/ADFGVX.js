@@ -1,10 +1,10 @@
 exports.ADFGVX = function(string) {
-    var word = ['*', 'A', ',', '^', '!', 'a', 'K', ')', '/', ';', 'G', 'f', '@', 'D', '~', 'm', '(', 'N', '+', '-', '1', '2', '3', '4', '5'];
+    const word = ['*', 'A', ',', '^', '!', 'a', 'K', ')', '/', ';', 'G', 'f', '@', 'D', '~', 'm', '(', 'N', '+', '-', '1', '2', '3', '4', '5'];
     
-    var generateAsciiTable = () => {
-        var result = [];
-        var lineOfLetters = [];
-        var counter = 0;
+    const generateAsciiTable = () => {
+        let result = [];
+        let lineOfLetters = [];
+        let counter = 0;
 
         for(var i=0; i<512; i++) {
             lineOfLetters.push(String.fromCharCode(i));
@@ -25,18 +25,18 @@ exports.ADFGVX = function(string) {
         return result;
     };
 
-    var lettersTable = generateAsciiTable();
+    const lettersTable = generateAsciiTable();
 
-    var getLetter = (x, y) => {
+    const getLetter = (x, y) => {
         return lettersTable[y][x];
     };
 
-    var findLetter = (char) => {
+    const findLetter = (char) => {
         for(var i=0; i<lettersTable.length; i++) {
-            var line = lettersTable[i];
+            const line = lettersTable[i];
 
             for(var j=0; j<line.length; j++) {
-                var letter = getLetter(j, i);
+                const letter = getLetter(j, i);
 
                 if(letter === char)
                     return word[j] + word[i];
@@ -46,8 +46,8 @@ exports.ADFGVX = function(string) {
         return '';
     };
 
-    var encodeWord = (string) => {
-        var result = '';
+    const encodeWord = (string) => {
+        let result = '';
         for(var i=0; i<string.length; i++)
             result += findLetter(string[i]);
 

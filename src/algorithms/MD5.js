@@ -1,10 +1,10 @@
 exports.MD5 = (string) => {
-    var rotateLeft = (value, shiftBits) => {
+    const rotateLeft = (value, shiftBits) => {
         return (value << shiftBits) | (value >>> (32 - shiftBits));
     };
 
-    var addUnsigned = (x, y) => {
-        var x4, y4, x8, y8, result;
+    const addUnsigned = (x, y) => {
+        let x4, y4, x8, y8, result;
         x8 = (x & 0x80000000);
         y8 = (y & 0x80000000);
         x4 = (x & 0x40000000);
@@ -23,51 +23,51 @@ exports.MD5 = (string) => {
             return (result ^ x8 ^ y8);
     };
 
-    var F = (x, y, z) => { 
+    const F = (x, y, z) => { 
         return (x & y) | ((~x) & z); 
     };
 
-    var G = (x,y,z) => { 
+    const G = (x,y,z) => { 
         return (x & z) | (y & (~z)); 
     };
 
-    var H = (x,y,z) => { 
+    const H = (x,y,z) => { 
         return (x ^ y ^ z); 
     };
 
-    var I = (x,y,z) => { 
+    const I = (x,y,z) => { 
         return (y ^ (x | (~z))); 
     };
 
-    var FF = (a, b, c, d, x, s, ac) => {
+    const FF = (a, b, c, d, x, s, ac) => {
         a = addUnsigned(a, addUnsigned(addUnsigned(F(b, c, d), x), ac));
         return addUnsigned(rotateLeft(a, s), b);
     };
 
-    var GG = (a, b, c, d, x, s, ac) => {
+    const GG = (a, b, c, d, x, s, ac) => {
         a = addUnsigned(a, addUnsigned(addUnsigned(G(b, c, d), x), ac));
         return addUnsigned(rotateLeft(a, s), b);
     };
 
-    var HH = (a, b, c, d, x, s, ac) => {
+    const HH = (a, b, c, d, x, s, ac) => {
         a = addUnsigned(a, addUnsigned(addUnsigned(H(b, c, d), x), ac));
         return addUnsigned(rotateLeft(a, s), b);
     };
 
-    var II = (a, b, c, d, x, s, ac) => {
+    const II = (a, b, c, d, x, s, ac) => {
         a = addUnsigned(a, addUnsigned(addUnsigned(I(b, c, d), x), ac));
         return addUnsigned(rotateLeft(a, s), b);
     };
 
-    var convertToWordArray = (string) => {
-        var wordCount;
-        var messageLength = string.length;
-        var numberOfWordsTemp1 = messageLength + 8;
-        var numberOfWordsTemp2 = (numberOfWordsTemp1 - (numberOfWordsTemp1 % 64)) / 64;
-        var numberOfWords = (numberOfWordsTemp2 + 1) * 16;
-        var wordArray = Array(numberOfWords - 1);
-        var bytePosition = 0;
-        var byteCount = 0;
+    const convertToWordArray = (string) => {
+        let wordCount;
+        const messageLength = string.length;
+        const numberOfWordsTemp1 = messageLength + 8;
+        const numberOfWordsTemp2 = (numberOfWordsTemp1 - (numberOfWordsTemp1 % 64)) / 64;
+        const numberOfWords = (numberOfWordsTemp2 + 1) * 16;
+        const wordArray = Array(numberOfWords - 1);
+        let bytePosition = 0;
+        let byteCount = 0;
 
         while(byteCount < messageLength) {
             wordCount = (byteCount-(byteCount % 4)) / 4;
@@ -85,11 +85,11 @@ exports.MD5 = (string) => {
         return wordArray;
     };
 
-    var wordToHex = (value) => {
-        var wordToHexValue = "";
-        var wordToHexValueTemp = "";
-        var byte;
-        var count;
+    const wordToHex = (value) => {
+        let wordToHexValue = "";
+        let wordToHexValueTemp = "";
+        let byte;
+        let count;
 
         for (count = 0; count <= 3; count++) {
             byte = (value >>> (count * 8)) & 255;
@@ -100,12 +100,12 @@ exports.MD5 = (string) => {
         return wordToHexValue;
     };
 
-    var utf8Encode = string => {
+    const utf8Encode = string => {
         string = string.replace(/\r\n/g, "\n");
-        var utftext = "";
+        let utftext = "";
 
         for (var n = 0; n < string.length; n++) {
-            var c = string.charCodeAt(n);
+            const c = string.charCodeAt(n);
  
             if (c < 128)
                 utftext += String.fromCharCode(c);
@@ -122,12 +122,12 @@ exports.MD5 = (string) => {
         return utftext;
     };
 
-    var x = Array();
-    var k, AA, BB, CC, DD, a, b, c, d;
-    var S11 = 7, S12 = 12, S13 = 17, S14 = 22;
-    var S21 = 5, S22 = 9, S23 = 14, S24 = 20;
-    var S31 = 4, S32 = 11, S33 = 16, S34 = 23;
-    var S41 = 6, S42 = 10, S43 = 15, S44 = 21;
+    let x = Array();
+    let k, AA, BB, CC, DD, a, b, c, d;
+    const S11 = 7, S12 = 12, S13 = 17, S14 = 22;
+    const S21 = 5, S22 = 9, S23 = 14, S24 = 20;
+    const S31 = 4, S32 = 11, S33 = 16, S34 = 23;
+    const S41 = 6, S42 = 10, S43 = 15, S44 = 21;
 
     string = utf8Encode(string);
     x = convertToWordArray(string);
@@ -212,7 +212,7 @@ exports.MD5 = (string) => {
         d = addUnsigned(d, DD);
     }
     
-    var temp = wordToHex(a) + wordToHex(b) + wordToHex(c) + wordToHex(d);
+    const temp = wordToHex(a) + wordToHex(b) + wordToHex(c) + wordToHex(d);
 
     return temp.toLowerCase();
 };

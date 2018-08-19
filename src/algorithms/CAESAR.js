@@ -1,8 +1,8 @@
 exports.CAESAR = function(string) {
-    var add = 3;
+    const add = 3;
 
-    var encodeWord = (string) => {
-        var result = '';
+    const encodeWord = (string) => {
+        let result = '';
         for(var i=0; i<string.length; i++)
             result += String.fromCharCode(string.charCodeAt(i) + add);
 

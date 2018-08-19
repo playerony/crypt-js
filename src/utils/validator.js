@@ -4,11 +4,11 @@ exports.validator = function(options) {
             response,
             error
         }
-    }
+    };
 
-    var validateOptions = (options) => {
-        var algorithms = options.algorithms;
-        var value = options.value;
+    const validateOptions = (options) => {
+        const algorithms = options.algorithms;
+        const value = options.value;
 
         if(!algorithms) 
             return response(null, 'There are not any algorithm.');
@@ -21,7 +21,7 @@ exports.validator = function(options) {
             return response(null, 'Value is not a string.');
 
         return response('success', null);
-    }
+    };
 
     return validateOptions(options);
 }
