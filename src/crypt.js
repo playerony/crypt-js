@@ -29,9 +29,9 @@ const hash = (options) => {
     }
 
     return generateResponse([], options.value);
-}
+};
 
 console.log(hash({
     algorithms: [algorithm.DES],
     value: 'WOrK'
-}))
+}));

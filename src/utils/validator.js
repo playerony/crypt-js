@@ -24,4 +24,4 @@ exports.validator = function(options) {
     };
 
     return validateOptions(options);
-}
+};

@@ -6,4 +6,4 @@ exports.algorithms = JSON.parse(JSON.stringify({
     ROT13: 'ROT13',
     ONE_TIME_PAD: 'ONE_TIME_PAD',
     DES: 'DES'
-}))
+}));

@@ -32,4 +32,4 @@ exports.hashValue = (algorithm, value) => {
         default:
             return null;
     }
-}
+};
