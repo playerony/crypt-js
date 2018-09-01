@@ -1,58 +1,82 @@
 exports.ADFGVX = function(string) {
-    const word = ['*', 'A', ',', '^', '!', 'a', 'K', ')', '/', ';', 'G', 'f', '@', 'D', '~', 'm', '(', 'N', '+', '-', '1', '2', '3', '4', '5'];
-    
-    const generateAsciiTable = () => {
-        let result = [];
-        let lineOfLetters = [];
-        let counter = 0;
+  const word = [
+    "*",
+    "A",
+    ",",
+    "^",
+    "!",
+    "a",
+    "K",
+    ")",
+    "/",
+    ";",
+    "G",
+    "f",
+    "@",
+    "D",
+    "~",
+    "m",
+    "(",
+    "N",
+    "+",
+    "-",
+    "1",
+    "2",
+    "3",
+    "4",
+    "5"
+  ];
 
-        for(var i=0; i<512; i++) {
-            lineOfLetters.push(String.fromCharCode(i));
-            counter++;
+  const generateAsciiTable = () => {
+    let result = [];
+    let lineOfLetters = [];
+    let counter = 0;
 
-            if(counter % 23 === 0) {
-                counter = 0;
-                result.push(lineOfLetters);
-                lineOfLetters = [];
-            }
-        }
+    for (let i = 0; i < 512; i++) {
+      lineOfLetters.push(String.fromCharCode(i));
+      counter++;
 
-        if(lineOfLetters.length > 0) {
-            result.push(lineOfLetters);
-            lineOfLetters = [];
-        }
+      if (counter % 23 === 0) {
+        counter = 0;
+        result.push(lineOfLetters);
+        lineOfLetters = [];
+      }
+    }
 
-        return result;
-    };
+    if (lineOfLetters.length > 0) {
+      result.push(lineOfLetters);
+      lineOfLetters = [];
+    }
 
-    const lettersTable = generateAsciiTable();
+    return result;
+  };
 
-    const getLetter = (x, y) => {
-        return lettersTable[y][x];
-    };
+  const lettersTable = generateAsciiTable();
 
-    const findLetter = (char) => {
-        for(var i=0; i<lettersTable.length; i++) {
-            const line = lettersTable[i];
+  const getLetter = (x, y) => {
+    return lettersTable[y][x];
+  };
 
-            for(var j=0; j<line.length; j++) {
-                const letter = getLetter(j, i);
+  const findLetter = char => {
+    for (let i = 0; i < lettersTable.length; i++) {
+      const line = lettersTable[i];
 
-                if(letter === char)
-                    return word[j] + word[i];
-            }
-        }
+      for (let j = 0; j < line.length; j++) {
+        const letter = getLetter(j, i);
 
-        return '';
-    };
+        if (letter === char) return word[j] + word[i];
+      }
+    }
 
-    const encodeWord = (string) => {
-        let result = '';
-        for(var i=0; i<string.length; i++)
-            result += findLetter(string[i]);
+    return "";
+  };
 
-        return result;
-    };
+  const encodeWord = string => {
+    let result = "";
+    for (let i = 0; i < string.length; i++) result += findLetter(string[i]);
 
-    return encodeWord(string);
-}
+    return result;
+  };
+
+  return encodeWord(string);
+};
