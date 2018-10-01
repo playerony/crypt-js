@@ -5,30 +5,24 @@ const CAESAR = require("../algorithms/CAESAR").CAESAR;
 const ROT13 = require("../algorithms/ROT13").ROT13;
 const DES = require("../algorithms/DES").DES;
 const ONE_TIME_PAD = require("../algorithms/ONE_TIME_PAD").ONE_TIME_PAD;
+const algorithms = require("../constants/constants").algorithms;
 
 exports.hashValue = (algorithm, value) => {
   switch (algorithm) {
-    case "MD5":
+    case algorithms.MD5:
       return MD5(value);
-
-    case "SHA256":
+    case algorithms.SHA256:
       return SHA256(value);
-
-    case "ADFGVX":
+    case algorithms.ADFGVX:
       return ADFGVX(value);
-
-    case "ROT13":
+    case algorithms.ROT13:
       return ROT13(value);
-
-    case "ONE_TIME_PAD":
+    case algorithms.ONE_TIME_PAD:
       return ONE_TIME_PAD(value);
-
-    case "CAESAR":
+    case algorithms.CAESAR:
       return CAESAR(value);
-
-    case "DES":
+    case algorithms.DES:
       return DES(value);
-
     default:
       return null;
   }

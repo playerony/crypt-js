@@ -53,16 +53,12 @@ exports.ADFGVX = function(string) {
 
   const lettersTable = generateAsciiTable();
 
-  const getLetter = (x, y) => {
-    return lettersTable[y][x];
-  };
-
   const findLetter = char => {
     for (let i = 0; i < lettersTable.length; i++) {
       const line = lettersTable[i];
 
       for (let j = 0; j < line.length; j++) {
-        const letter = getLetter(j, i);
+        const letter = lettersTable[i][j];
 
         if (letter === char) return word[j] + word[i];
       }
@@ -71,12 +67,8 @@ exports.ADFGVX = function(string) {
     return "";
   };
 
-  const encodeWord = string => {
-    let result = "";
-    for (let i = 0; i < string.length; i++) result += findLetter(string[i]);
+  let result = "";
+  for (let i = 0; i < string.length; i++) result += findLetter(string[i]);
 
-    return result;
-  };
-
-  return encodeWord(string);
+  return result;
 };

@@ -87,9 +87,8 @@ exports.MD5 = string => {
     let wordToHexValue = "";
     let wordToHexValueTemp = "";
     let byte;
-    let count;
 
-    for (count = 0; count <= 3; count++) {
+    for (let count = 0; count <= 3; count++) {
       byte = (value >>> (count * 8)) & 255;
       wordToHexValueTemp = "0" + byte.toString(16);
       wordToHexValue =

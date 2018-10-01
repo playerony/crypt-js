@@ -1,12 +1,8 @@
 exports.ONE_TIME_PAD = function(string) {
-  const convertCharToBinary = char => {
-    return char.charCodeAt(0).toString(2);
-  };
-
   const wordToBinary = string => {
     let result = "";
     for (let i = 0; i < string.length; i++)
-      result += convertCharToBinary(string[i]);
+      result += string[i].charCodeAt(0).toString(2);
 
     return result;
   };
@@ -28,12 +24,7 @@ exports.ONE_TIME_PAD = function(string) {
     return result;
   };
 
-  const encodeWord = string => {
-    const binaryWord = wordToBinary(string);
-    const hash = generateHash(binaryWord);
+  const binaryWord = wordToBinary(string);
 
-    return mixBinaryWordWithHash(binaryWord, hash);
-  };
-
-  return encodeWord(string);
+  return mixBinaryWordWithHash(binaryWord, generateHash(binaryWord));
 };

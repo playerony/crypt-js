@@ -290,33 +290,17 @@ exports.DES = function(message) {
     return keys;
   };
 
-  const stringToHex = function(s) {
+  const stringToHex = s => {
     let r = "0x";
-    let hexes = new Array(
-      "0",
-      "1",
-      "2",
-      "3",
-      "4",
-      "5",
-      "6",
-      "7",
-      "8",
-      "9",
-      "a",
-      "b",
-      "c",
-      "d",
-      "e",
-      "f"
-    );
+    const hexes = new Array("0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "a", "b", "c", "d", "e", "f");
+    
     for (let i = 0; i < s.length; i++)
       r += hexes[s.charCodeAt(i) >> 4] + hexes[s.charCodeAt(i) & 0xf];
 
     return r;
   };
 
-  const hexToString = function(h) {
+  const hexToString = h => {
     let r = "";
     for (let i = h.substr(0, 2) == "0x" ? 2 : 0; i < h.length; i += 2)
       r += String.fromCharCode(parseInt(h.substr(i, 2), 16));
@@ -324,7 +308,7 @@ exports.DES = function(message) {
     return r;
   };
 
-  let key = "this is a 24 byte key !!";
+  const key = "this is a 24 byte key !!";
 
   return stringToHex(des(key, message, 1, 0));
 };

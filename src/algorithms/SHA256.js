@@ -18,14 +18,13 @@ exports.SHA256 = function sha256(string) {
 
   let isComposite = {};
 
-  for (var candidate = 2; primeCounter < 64; candidate++) {
+  for (let candidate = 2; primeCounter < 64; candidate++)
     if (!isComposite[candidate]) {
       for (i = 0; i < 313; i += candidate) isComposite[i] = candidate;
 
       hash[primeCounter] = (mathPow(candidate, 0.5) * maxWord) | 0;
       k[primeCounter++] = (mathPow(candidate, 1 / 3) * maxWord) | 0;
     }
-  }
 
   string += "\x80";
 

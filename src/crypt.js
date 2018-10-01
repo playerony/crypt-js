@@ -1,4 +1,4 @@
-const algorithm = require("./constants/constants").algorithms;
+const algorithms = require("./constants/constants").algorithms;
 const validator = require("./utils/validator").validator;
 const hashValue = require("./utils/crypt.utils").hashValue;
 
@@ -16,7 +16,7 @@ const hash = options => {
     const algorithms = options.algorithms;
     let value = options.value;
 
-    for (var i = 0; i < algorithms.length; i++) {
+    for (let i = 0; i < algorithms.length; i++) {
       const algorithm = algorithms[i];
       const hValue = hashValue(algorithm, value);
 
@@ -31,7 +31,7 @@ const hash = options => {
 
 console.log(
   hash({
-    algorithms: [algorithm.DES],
+    algorithms: [algorithms.DES, algorithms.MD5, algorithms.ADFGVX],
     value: "WOrK"
   })
 );
