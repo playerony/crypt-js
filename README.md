@@ -1,40 +1,51 @@
 # crypt-js
 
 ## Usage
+
 Simple data crypt
+
 ###
 
 ## Example
+
 ```javascript
-console.log(hash({
-    algorithms: [algorithm.DES, algorithm.MD5],
-    value: 'WORK'
-}))
+const hash = require("./index").hash;
+const algorithms = require("./index").algorithms;
+
+console.log(
+  hash({
+    algorithms: [algorithms.DES, algorithms.MD5, algorithms.ADFGVX],
+    value: "WOrK"
+  })
+);
 ```
 
 ## Result
+
 ```json
 {
-    "algorithm": ["DES", "MD5"],
-    "result": "76e2fba0bb05f2da1814c5e088e20241"
+  "algorithms": ["DES", "MD5"],
+  "result": "76e2fba0bb05f2da1814c5e088e20241"
 }
 ```
 
 ###
 
 ## Installation
-1) Clone repository
-2) npm install
-3) npm test
 
+1. Clone repository
+2. npm install
+3. npm test
 
 #### Requirements
+
 - Installed GIT
 - Installed node.js
 
 ###
 
 ## License
+
 ```text
 MIT License
 
