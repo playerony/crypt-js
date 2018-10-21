@@ -1,7 +1,7 @@
 {
-  "name": "crypt",
+  "name": "@playerony/crypt-js",
   "version": "1.0.0",
-  "description": "Simple data crypt\r ###",
+  "description": "JavaScript library of crypt some data.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -10,8 +10,8 @@
     "type": "git",
     "url": "git+https://github.com/playerony/crypt-js.git"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Paweł Wojtasiński",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/playerony/crypt-js/issues"
   },
